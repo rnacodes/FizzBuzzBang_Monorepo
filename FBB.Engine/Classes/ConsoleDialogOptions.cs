@@ -3,7 +3,7 @@ using static FBB.Engine.Extensions.Extensions;
 
 namespace FBB.Engine.Classes
 {
-    public static class DialogOptions
+    public static class ConsoleDialogOptions
     {
         public static void Translate()
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static FBB.Engine.Classes.DialogOptions;
+using static FBB.Engine.Classes.ConsoleDialogOptions;
 namespace FBB.Engine.Extensions;
 
 public static class Extensions
