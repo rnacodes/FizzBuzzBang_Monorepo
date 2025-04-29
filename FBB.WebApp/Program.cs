@@ -1,6 +1,6 @@
-﻿using BlazorApp1.Components;
+﻿using FBB.WebApp.Components;
 
-namespace BlazorApp1
+namespace FBB.WebApp
 {
     public class Program
     {
