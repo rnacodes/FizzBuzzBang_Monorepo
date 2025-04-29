@@ -29,6 +29,25 @@ public static class MagicTranslator
         return numberTranslatedToFBB;
     }
 
+    public static string TranslateNumberForm(this int? numberToTranslate) //Turn into extension method
+    {
+        string numberTranslatedToFBB = "";
+
+        foreach (var digitToCheck in FunPhrases)
+        {
+            if (numberToTranslate.ToString().DoesContainDigit(digitToCheck.Key) || numberToTranslate % int.Parse(digitToCheck.Key) == 0)
+            {
+                numberTranslatedToFBB += digitToCheck.Value;
+            }
+        }
+
+        if (numberTranslatedToFBB == "")
+        {
+            numberTranslatedToFBB = numberToTranslate.ToString();
+        }
+        return numberTranslatedToFBB;
+    }
+
     public static Dictionary<string, string> FunPhrases = new Dictionary<string, string>()
      {
         {"3","Fizz"},

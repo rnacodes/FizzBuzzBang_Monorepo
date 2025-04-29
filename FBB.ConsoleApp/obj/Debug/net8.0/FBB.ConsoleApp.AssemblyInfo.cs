@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FBB.ConsoleApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ddcfe0f10776b0db391652a9848f7f493f39c7ab")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3cc9df04e9f47ac20c9e03cd2c2789816df33182")]
 [assembly: System.Reflection.AssemblyProductAttribute("FBB.ConsoleApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FBB.ConsoleApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

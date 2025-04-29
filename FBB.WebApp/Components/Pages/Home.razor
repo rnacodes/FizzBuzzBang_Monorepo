@@ -1,7 +1,128 @@
-﻿@page "/"
+﻿@using FBB.Engine.Classes
+@using FBB.Engine.Extensions
+@namespace FBB.WebApp.Components.Pages
+@using MudBlazor
+
+@*
+using FBB.WebApp.Components;
+using FBB.Engine;
+using FBB.Engine.Classes.FBBTranslator;
+
+using FBB.Engine.Extensions;
+using static FBB.Engine.Classes.ConsoleDialogOptions;
+*@
+
+@*
+@using static FBB.Engine.Classes.FBBTranslator;
+@using static FBB.Engine.Classes;
+@using FBB.Engine.Extensions;
+@using FBB.Engine;
+*@
+
+@*FIGURE OUT CORRECT NAMESPACE!*@
+@*FBBTranslator.Classes.MagicTranslator;*@
+@inherits MainLayout;
+
+@using System.Text.RegularExpressions
+@using System.ComponentModel.DataAnnotations
+
+@page "/"
 
 <PageTitle>Home</PageTitle>
+<MudText Typo="Typo.h4" Color="Color.Primary">Translation</MudText>
+<MudText Typo="Typo.h5">Let's play a game!</MudText>
+<MudText Typo="Typo.h5">
+    Enter a number between 1 and 1000 to translate into our special FizzBuzzBang language!
+</MudText>
+<MudGrid>
+    <MudItem xs="12" sm="7">
+        <MudPaper Class="pa-4">
+            <MudForm @ref="form" @bind-IsValid="@success">
+                <MudTextField T="int?" Label="Enter your number here!" @bind-Value="@userValueEntered" Required="true" RequiredError="We can't do a translation if you don't give us a number!" />
+                @code {
+                    //numberInFBB = userValueEntered.MagicTranslator.TranslateNumber();
 
-<h1>Hello, world!</h1>
+                    //Program takes in number from user - DONE
+                    //Validate number (this can happen in a second round of updates)
+                    //Number is taken through translator
+                    //Once translated, number is printed where errors box is currently located
+                }
+            </MudForm>
+        </MudPaper>
+        <MudPaper Class="pa-4 mt-4">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" DropShadow="false" OnClick="TranslateInput">Translate</MudButton>
 
-Welcome to your new app.
+            @*THE BUTTON BELOW CAN BECOME A RESET BUTTON SO THAT THE USER CAN ENTER ANOTHER NUMBER*@
+            @*<MudButton Variant="Variant.Filled" Color="Color.Secondary" DropShadow="false" OnClick="@(() => form.ResetAsync())" Class="mx-2">Reset</MudButton>
+            <MudButton Variant="Variant.Filled" DropShadow="false" OnClick="@(() => form.ResetValidation())">Reset Validation</MudButton>*@
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" sm="5">
+        <MudPaper Class="pa-4 mud-height-full">
+            <MudText Typo="Typo.subtitle2">Your number is...</MudText>
+            @if (numberInFbb != null)
+            {
+                <MudText Typo="Typo.h4">@numberInFbb</MudText>
+            }
+
+
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+@code {
+    bool success;
+    private int? userValueEntered { get; set; }
+    private string numberInFbb; //rename this once entire code has been copied over
+    MudForm form;
+
+    private void TranslateInput()
+    {
+        if (userValueEntered.HasValue)
+        {
+            numberInFbb = userValueEntered.TranslateNumberForm();
+        }
+        else
+        {
+            numberInFbb = string.Empty;
+        }
+    }
+
+    string[] errors = { };
+    // MudTextField<string> pwField1;
+
+
+    /*
+    private IEnumerable<string> PasswordStrength(string pw)
+    {
+        if (string.IsNullOrWhiteSpace(pw))
+        {
+            yield return "Password is required!";
+            yield break;
+        }
+        if (pw.Length < 8)
+            yield return "Password must be at least of length 8";
+        if (!Regex.IsMatch(pw, @"[A-Z]"))
+            yield return "Password must contain at least one capital letter";
+        if (!Regex.IsMatch(pw, @"[a-z]"))
+            yield return "Password must contain at least one lowercase letter";
+        if (!Regex.IsMatch(pw, @"[0-9]"))
+            yield return "Password must contain at least one digit";
+    }
+
+    private string PasswordMatch(string arg)
+    {
+        if (pwField1.Value != arg)
+            return "Passwords don't match";
+        return null;
+    }
+*/
+    private string ValidateNumber(int userInput)
+    {
+        if (userInput < 1 || userInput > 1000)
+        {
+            return "Please enter a number between 1 and 1000";
+        }
+        return null;
+    }
+}
